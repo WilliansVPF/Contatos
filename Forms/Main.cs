@@ -1,11 +1,16 @@
+using Microsoft.Extensions.DependencyInjection;
+
 namespace Forms
 {
     public partial class Main : Form
     {
-        public Main()
+        private readonly IServiceProvider _serviceProvider;
+
+        public Main(IServiceProvider serviceProvider)
         {
             InitializeComponent();
-            Login login = new Login();
+            _serviceProvider = serviceProvider;
+            var login = _serviceProvider.GetRequiredService<Login>();
             login.ShowDialog();
         }
     }

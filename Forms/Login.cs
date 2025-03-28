@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Microsoft.Extensions.DependencyInjection;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
@@ -12,11 +13,13 @@ namespace Forms
 {
     public partial class Login : Form
     {
+        private readonly IServiceProvider _serviceProvider;
         private bool _estaAutenticado = false;
 
-        public Login()
+        public Login(IServiceProvider serviceProvider)
         {
-            InitializeComponent();
+            _serviceProvider = serviceProvider;
+            InitializeComponent();            
         }
 
         private void btEntrar_Click(object sender, EventArgs e)
@@ -42,7 +45,7 @@ namespace Forms
 
         private void lbRegistrar_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e)
         {
-            Registrar registrar = new Registrar();
+            var registrar = _serviceProvider.GetRequiredService<Registrar>();
             registrar.ShowDialog();
         }
     }

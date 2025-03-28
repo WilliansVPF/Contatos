@@ -1,4 +1,7 @@
-﻿using System;
+﻿using Interfaces;
+using Models;
+using Repository;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
@@ -12,8 +15,11 @@ namespace Forms
 {
     public partial class Registrar : Form
     {
-        public Registrar()
+        private readonly IUsuarioDB _usuarioDB;
+
+        public Registrar(IUsuarioDB usuarioDB)
         {
+            _usuarioDB = usuarioDB;
             InitializeComponent();
         }
 
@@ -22,7 +28,25 @@ namespace Forms
             if (txbSenha.Text != txbRepitaSenha.Text)
             {
                 MessageBox.Show("Repita a mesma senha!");
+                return;
             }
+
+            Usuario usuario = new Usuario
+            {
+                Nome = txbNome.Text,
+                Login = txbUsuario.Text,
+                Senha = txbSenha.Text,
+                Salt = "123"
+            };
+
+            if (!_usuarioDB.RegistraUsuario(usuario))
+            {
+                MessageBox.Show("Erro inesperado ao registrar usuario");
+                return;
+            }
+
+            this.Close();            
+
         }
     }
 }
