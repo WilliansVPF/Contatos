@@ -98,14 +98,18 @@
             // txbSenha
             // 
             txbSenha.Location = new Point(13, 165);
+            txbSenha.MaxLength = 16;
             txbSenha.Name = "txbSenha";
+            txbSenha.PasswordChar = '*';
             txbSenha.Size = new Size(172, 23);
             txbSenha.TabIndex = 6;
             // 
             // txbRepitaSenha
             // 
             txbRepitaSenha.Location = new Point(191, 165);
+            txbRepitaSenha.MaxLength = 16;
             txbRepitaSenha.Name = "txbRepitaSenha";
+            txbRepitaSenha.PasswordChar = '*';
             txbRepitaSenha.Size = new Size(173, 23);
             txbRepitaSenha.TabIndex = 7;
             // 
