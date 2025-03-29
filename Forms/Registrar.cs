@@ -25,9 +25,68 @@ namespace Forms
 
         private void btRegistrar_Click(object sender, EventArgs e)
         {
+            bool estaOK = true;
+
+            if (txbNome.Text == "")
+            {
+                lblNome.Text = "* Este campo é obrigatorio";
+                lblNome.Visible = true;
+                estaOK = false;
+            }
+            else
+            {
+                lblNome.Visible = false;
+            }
+
+            if (txbUsuario.Text == "")
+            {
+                lblUsuario.Text = "* Este campo é obrigatorio";
+                lblUsuario.Visible = true;
+                estaOK = false;
+            }
+            else
+            {
+                lblUsuario.Visible = false;
+            }
+
+            if (txbSenha.Text == "")
+            {
+                lblSenha.Text = "* Este campo é obrigatorio";
+                lblSenha.Visible = true;
+                estaOK = false;
+            }
+            else
+            {
+                lblSenha.Visible = false;
+            }
+
+            if (txbRepitaSenha.Text == "")
+            {
+                lblConfirmaSenha.Text = "* Este campo é obrigatorio";
+                lblConfirmaSenha.Visible = true;
+                estaOK = false;
+            }
+            else
+            {
+                lblConfirmaSenha.Visible = false;
+            }
+
+            if (!estaOK)
+            {
+                return;
+            }
+
+            if (_usuarioDB.GetLogin(txbUsuario.Text))
+            {
+                lblUsuario.Text = "* Nome de usuario já esta sendo usado";
+                lblUsuario.Visible = true;
+                return;
+            }
+
             if (txbSenha.Text != txbRepitaSenha.Text)
             {
-                MessageBox.Show("Repita a mesma senha!");
+                lblConfirmaSenha.Text = "* Senhas não conferem";
+                lblConfirmaSenha.Visible = true;
                 return;
             }
 
@@ -45,7 +104,8 @@ namespace Forms
                 return;
             }
 
-            this.Close();            
+            MessageBox.Show("Registro realizado com sucesso!");
+            this.Close();
 
         }
     }

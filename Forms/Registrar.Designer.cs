@@ -37,7 +37,10 @@
             txbSenha = new TextBox();
             txbRepitaSenha = new TextBox();
             btRegistrar = new Button();
-            label5 = new Label();
+            lblUsuario = new Label();
+            lblConfirmaSenha = new Label();
+            lblNome = new Label();
+            lblSenha = new Label();
             SuspendLayout();
             // 
             // label1
@@ -85,6 +88,8 @@
             // 
             // txbUsuario
             // 
+            txbUsuario.BackColor = SystemColors.Window;
+            txbUsuario.ForeColor = SystemColors.MenuText;
             txbUsuario.Location = new Point(191, 94);
             txbUsuario.Name = "txbUsuario";
             txbUsuario.Size = new Size(173, 23);
@@ -106,7 +111,7 @@
             // 
             // btRegistrar
             // 
-            btRegistrar.Location = new Point(305, 203);
+            btRegistrar.Location = new Point(305, 210);
             btRegistrar.Name = "btRegistrar";
             btRegistrar.Size = new Size(75, 23);
             btRegistrar.TabIndex = 8;
@@ -114,23 +119,59 @@
             btRegistrar.UseVisualStyleBackColor = true;
             btRegistrar.Click += btRegistrar_Click;
             // 
-            // label5
+            // lblUsuario
             // 
-            label5.AutoSize = true;
-            label5.ForeColor = Color.Red;
-            label5.Location = new Point(191, 120);
-            label5.Name = "label5";
-            label5.Size = new Size(198, 15);
-            label5.TabIndex = 9;
-            label5.Text = "Este nome de usuario ja esta em uso";
-            label5.Visible = false;
+            lblUsuario.AutoSize = true;
+            lblUsuario.ForeColor = Color.Red;
+            lblUsuario.Location = new Point(191, 120);
+            lblUsuario.Name = "lblUsuario";
+            lblUsuario.Size = new Size(12, 15);
+            lblUsuario.TabIndex = 9;
+            lblUsuario.Text = "*";
+            lblUsuario.Visible = false;
+            // 
+            // lblConfirmaSenha
+            // 
+            lblConfirmaSenha.AutoSize = true;
+            lblConfirmaSenha.ForeColor = Color.Red;
+            lblConfirmaSenha.Location = new Point(191, 191);
+            lblConfirmaSenha.Name = "lblConfirmaSenha";
+            lblConfirmaSenha.Size = new Size(12, 15);
+            lblConfirmaSenha.TabIndex = 10;
+            lblConfirmaSenha.Text = "*";
+            lblConfirmaSenha.Visible = false;
+            // 
+            // lblNome
+            // 
+            lblNome.AutoSize = true;
+            lblNome.ForeColor = Color.Red;
+            lblNome.Location = new Point(12, 120);
+            lblNome.Name = "lblNome";
+            lblNome.Size = new Size(12, 15);
+            lblNome.TabIndex = 11;
+            lblNome.Text = "*";
+            lblNome.Visible = false;
+            // 
+            // lblSenha
+            // 
+            lblSenha.AutoSize = true;
+            lblSenha.ForeColor = Color.Red;
+            lblSenha.Location = new Point(13, 191);
+            lblSenha.Name = "lblSenha";
+            lblSenha.Size = new Size(12, 15);
+            lblSenha.TabIndex = 12;
+            lblSenha.Text = "*";
+            lblSenha.Visible = false;
             // 
             // Registrar
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
             ClientSize = new Size(392, 239);
-            Controls.Add(label5);
+            Controls.Add(lblSenha);
+            Controls.Add(lblNome);
+            Controls.Add(lblConfirmaSenha);
+            Controls.Add(lblUsuario);
             Controls.Add(btRegistrar);
             Controls.Add(txbRepitaSenha);
             Controls.Add(txbSenha);
@@ -157,6 +198,9 @@
         private TextBox txbSenha;
         private TextBox txbRepitaSenha;
         private Button btRegistrar;
-        private Label label5;
+        private Label lblUsuario;
+        private Label lblConfirmaSenha;
+        private Label lblNome;
+        private Label lblSenha;
     }
 }
