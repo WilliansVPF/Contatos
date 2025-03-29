@@ -11,6 +11,33 @@ namespace Repository
 {
     public class UsuarioDB : IUsuarioDB
     {
+        public bool GetLogin(string login)
+        {
+            try
+            {
+                using (var connection = Conexao.GetConnection)
+                {
+                    connection.Open();
+                    string sql = "SELECT EXISTS (SELECT 1 FROM Usuario WHERE login = @login);";
+
+                    using (var command = new MySqlCommand(sql, connection))
+                    {
+                        command.Parameters.AddWithValue("@login", login);
+                        int i = Convert.ToInt32(command.ExecuteScalar());
+                        if (i == 0)
+                        {
+                            return false;
+                        }
+                        return true;
+                    }
+                }
+            }
+            catch
+            {
+                return false;
+            }
+        }
+
         public bool RegistraUsuario(Usuario usuario)
         {
             try

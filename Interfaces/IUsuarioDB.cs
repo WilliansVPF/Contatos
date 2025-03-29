@@ -10,5 +10,7 @@ namespace Interfaces
     public interface IUsuarioDB
     {
         bool RegistraUsuario(Usuario usuario);
+
+        bool GetLogin(string login);
     }
 }
