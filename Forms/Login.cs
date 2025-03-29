@@ -1,4 +1,5 @@
-﻿using Microsoft.Extensions.DependencyInjection;
+﻿using Interfaces;
+using Microsoft.Extensions.DependencyInjection;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -13,12 +14,12 @@ namespace Forms
 {
     public partial class Login : Form
     {
-        private readonly IServiceProvider _serviceProvider;
+        private readonly IUsuarioDB _usuarioDB;
         private bool _estaAutenticado = false;
 
-        public Login(IServiceProvider serviceProvider)
+        public Login(IServiceProvider serviceProvider, IUsuarioDB usuarioDB)
         {
-            _serviceProvider = serviceProvider;
+            _usuarioDB = usuarioDB;
             InitializeComponent();            
         }
 
@@ -45,7 +46,8 @@ namespace Forms
 
         private void lbRegistrar_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e)
         {
-            var registrar = _serviceProvider.GetRequiredService<Registrar>();
+            //var registrar = _serviceProvider.GetRequiredService<Registrar>();
+            var registrar = new Registrar(_usuarioDB);
             registrar.ShowDialog();
         }
     }
