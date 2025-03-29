@@ -5,8 +5,8 @@ create table Usuario(
 idUsuario int primary key not null auto_increment,
 login varchar(45) not null unique,
 nome varchar(45) not null,
-senha varchar(45) not null,
-salt varchar(45) not null
+senha varchar(60) not null,
+salt varchar(29) not null
 );
 
 create table Contato(
