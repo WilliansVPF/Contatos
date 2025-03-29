@@ -33,6 +33,7 @@ namespace Forms
             services.AddScoped<Main>(); // Formulário principal
             services.AddScoped<Login>(); // Formulário Login
             services.AddScoped<Registrar>(); // Outro formulário
+
             services.AddScoped<IUsuarioDB, UsuarioDB>(); // Repositório
 
             var provider = services.BuildServiceProvider();

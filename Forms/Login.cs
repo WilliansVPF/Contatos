@@ -17,7 +17,7 @@ namespace Forms
         private readonly IUsuarioDB _usuarioDB;
         private bool _estaAutenticado = false;
 
-        public Login(IServiceProvider serviceProvider, IUsuarioDB usuarioDB)
+        public Login(IUsuarioDB usuarioDB)
         {
             _usuarioDB = usuarioDB;
             InitializeComponent();            
