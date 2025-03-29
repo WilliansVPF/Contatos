@@ -1,6 +1,7 @@
 ﻿using Interfaces;
 using Models;
 using Repository;
+using Servicos;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -90,12 +91,16 @@ namespace Forms
                 return;
             }
 
+            string salt = GeraHash.Salt;
+            string senha = GeraHash.Hash(txbSenha.Text);
+            senha = GeraHash.Hash(salt +  senha);
+
             Usuario usuario = new Usuario
             {
                 Nome = txbNome.Text,
                 Login = txbUsuario.Text,
-                Senha = txbSenha.Text,
-                Salt = "123"
+                Senha = senha,
+                Salt = salt
             };
 
             if (!_usuarioDB.RegistraUsuario(usuario))
