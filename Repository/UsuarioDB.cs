@@ -38,6 +38,44 @@ namespace Repository
             }
         }
 
+        public Usuario GetUsuario(string login)
+        {
+            try
+            {
+                using (var connection = Conexao.GetConnection)
+                {
+                    connection.Open();
+                    string sql = "SELECT idUsuario, login, nome, senha, salt FROM Usuario WHERE login = @login;";
+
+                    using (var command = new MySqlCommand(sql, connection))
+                    {
+                        command.Parameters.AddWithValue("@login", login);
+
+                        using (var reader = command.ExecuteReader())
+                        {
+                            if (reader.Read())
+                            {
+                                Usuario usuario = new Usuario
+                                {
+                                    IdUsuario = reader.GetInt32("idUsuario"),
+                                    Nome = reader.GetString("nome"),
+                                    Login = reader.GetString("login"),
+                                    Senha = reader.GetString("senha"),
+                                    Salt = reader.GetString("salt")
+                                };
+                                return usuario;
+                            }
+                            return null;
+                        }
+                    }
+                }
+            }
+            catch
+            {
+                return null;
+            }
+        }
+
         public bool RegistraUsuario(Usuario usuario)
         {
             try

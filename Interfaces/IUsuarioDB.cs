@@ -12,5 +12,7 @@ namespace Interfaces
         bool RegistraUsuario(Usuario usuario);
 
         bool GetLogin(string login);
+
+        Usuario GetUsuario(string login);
     }
 }
