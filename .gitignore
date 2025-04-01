@@ -805,4 +805,6 @@ fabric.properties
 ### VisualStudio Patch ###
 # Additional files built by Visual Studio
 
+*.bak
+
 # End of https://www.toptal.com/developers/gitignore/api/dotnetcore,visualstudiocode,csharp,aspnetcore,rider,visualstudio
