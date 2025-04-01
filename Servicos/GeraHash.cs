@@ -9,6 +9,6 @@ namespace Servicos
     public class GeraHash
     {
         public static string Salt => BCrypt.Net.BCrypt.GenerateSalt();
-        public static string Hash(string valor) => BCrypt.Net.BCrypt.HashPassword(valor);
+        public static string Hash(string valor, string salt) => BCrypt.Net.BCrypt.HashPassword(valor, salt);
     }
 }
