@@ -10,8 +10,9 @@ namespace Models
     {
         public int IdContato { get; set; }
         public string Nome { get; set; }
+        public string Sobrenome { get; set; }
         public int idUsuario { get; set; }
 
-        public List<EnderecoContato> EnderecosContato { get;}
+        public List<EnderecoContato> EnderecosContato { get; set; }
     }
 }

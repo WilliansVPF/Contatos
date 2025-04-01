@@ -12,7 +12,7 @@ salt varchar(29) not null
 create table Contato(
 idContato int primary key not null auto_increment,
 nome varchar(45) not null,
-sobrenome varchar(45) not null,
+sobrenome varchar(40) not null,
 idUsuario int not null,
 foreign key (idUsuario) references Usuario (idUsuario)
 );
