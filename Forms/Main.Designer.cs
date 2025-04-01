@@ -28,18 +28,78 @@
         /// </summary>
         private void InitializeComponent()
         {
+            gvContatos = new DataGridView();
+            btNovo = new Button();
+            btEditar = new Button();
+            btExcluir = new Button();
+            ((System.ComponentModel.ISupportInitialize)gvContatos).BeginInit();
             SuspendLayout();
+            // 
+            // gvContatos
+            // 
+            gvContatos.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            gvContatos.Location = new Point(12, 12);
+            gvContatos.Name = "gvContatos";
+            gvContatos.Size = new Size(437, 300);
+            gvContatos.TabIndex = 0;
+            // 
+            // btNovo
+            // 
+            btNovo.BackColor = Color.SeaGreen;
+            btNovo.Font = new Font("Segoe UI", 9.75F, FontStyle.Regular, GraphicsUnit.Point, 0);
+            btNovo.ForeColor = SystemColors.ControlLightLight;
+            btNovo.Location = new Point(455, 12);
+            btNovo.Name = "btNovo";
+            btNovo.Size = new Size(114, 39);
+            btNovo.TabIndex = 1;
+            btNovo.Text = "Novo Contato";
+            btNovo.UseVisualStyleBackColor = false;
+            // 
+            // btEditar
+            // 
+            btEditar.BackColor = Color.Gold;
+            btEditar.Font = new Font("Segoe UI", 9.75F, FontStyle.Regular, GraphicsUnit.Point, 0);
+            btEditar.ForeColor = SystemColors.ControlText;
+            btEditar.Location = new Point(455, 57);
+            btEditar.Name = "btEditar";
+            btEditar.Size = new Size(114, 39);
+            btEditar.TabIndex = 2;
+            btEditar.Text = "Editar Contato";
+            btEditar.UseVisualStyleBackColor = false;
+            // 
+            // btExcluir
+            // 
+            btExcluir.BackColor = Color.Red;
+            btExcluir.Font = new Font("Segoe UI", 9.75F, FontStyle.Regular, GraphicsUnit.Point, 0);
+            btExcluir.ForeColor = SystemColors.ControlLightLight;
+            btExcluir.Location = new Point(455, 102);
+            btExcluir.Name = "btExcluir";
+            btExcluir.Size = new Size(114, 39);
+            btExcluir.TabIndex = 3;
+            btExcluir.Text = "Excluir Contato";
+            btExcluir.UseVisualStyleBackColor = false;
             // 
             // Main
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
-            ClientSize = new Size(800, 450);
+            ClientSize = new Size(581, 327);
+            Controls.Add(btExcluir);
+            Controls.Add(btEditar);
+            Controls.Add(btNovo);
+            Controls.Add(gvContatos);
             Name = "Main";
-            Text = "Form1";
+            Text = "Main";
+            Load += Main_Load;
+            ((System.ComponentModel.ISupportInitialize)gvContatos).EndInit();
             ResumeLayout(false);
         }
 
         #endregion
+
+        private DataGridView gvContatos;
+        private Button btNovo;
+        private Button btEditar;
+        private Button btExcluir;
     }
 }

@@ -34,8 +34,8 @@ namespace Forms
             if (!_estaOK) return;
 
             string salt = GeraHash.Salt;
-            string senha = GeraHash.Hash(txbSenha.Text);
-            senha = GeraHash.Hash(salt +  senha);
+            string senha = GeraHash.Hash(txbSenha.Text, salt);
+            //senha = GeraHash.Hash(salt +  senha);
 
             Usuario usuario = new Usuario
             {
