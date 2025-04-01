@@ -1,5 +1,7 @@
 ﻿using Interfaces;
 using Microsoft.Extensions.DependencyInjection;
+using Models;
+using Servicos;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -15,33 +17,46 @@ namespace Forms
     public partial class Login : Form
     {
         private readonly IUsuarioDB _usuarioDB;
-        private bool _estaAutenticado = false;
 
         public Login(IUsuarioDB usuarioDB)
         {
             _usuarioDB = usuarioDB;
-            InitializeComponent();            
+            InitializeComponent();
         }
 
         private void btEntrar_Click(object sender, EventArgs e)
         {
-            if (txbLogin.Text.Equals("willians", StringComparison.OrdinalIgnoreCase) && txbSenha.Text == "123")
+            Usuario usuario = _usuarioDB.GetUsuario(txbLogin.Text);
+
+            if (usuario == null)
             {
-                _estaAutenticado = true;
-                this.Close();
+                lblErro1.Visible = true;
+                lblErro2.Visible = true;
+                return;
             }
-            else
+
+            string senha = GeraHash.Hash(txbSenha.Text, usuario.Salt);
+            //senha = usuario.Salt + senha;
+            //senha  = GeraHash.Hash(senha);
+
+            if (senha != usuario.Senha)
             {
-                MessageBox.Show("Usuario não encontrado", "Falha");
+                lblErro1.Visible = true;
+                lblErro2.Visible = true;
+                return;
             }
+
+            var sessao = UsuarioLogado.ObterInstancia();
+            sessao.Login(usuario.IdUsuario, usuario.Login);
+
+            this.Close();
+                        
         }
 
         private void Login_FormClosing(object sender, FormClosingEventArgs e)
         {
-            if (!_estaAutenticado)
-            {
-                Application.Exit();
-            }
+            var sessao = UsuarioLogado.ObterInstancia();
+            if (!sessao.EstaLogado) Application.Exit();
         }
 
         private void lbRegistrar_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e)

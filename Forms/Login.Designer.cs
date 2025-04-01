@@ -34,6 +34,8 @@
             txbLogin = new TextBox();
             label1 = new Label();
             lbRegistrar = new LinkLabel();
+            lblErro1 = new Label();
+            lblErro2 = new Label();
             SuspendLayout();
             // 
             // button1
@@ -95,11 +97,40 @@
             lbRegistrar.Text = "Registrar";
             lbRegistrar.LinkClicked += lbRegistrar_LinkClicked;
             // 
+            // lblErro1
+            // 
+            lblErro1.AutoSize = true;
+            lblErro1.BackColor = Color.Red;
+            lblErro1.Font = new Font("Segoe UI", 11.25F, FontStyle.Regular, GraphicsUnit.Point, 0);
+            lblErro1.ForeColor = SystemColors.ControlLightLight;
+            lblErro1.Location = new Point(12, 28);
+            lblErro1.Name = "lblErro1";
+            lblErro1.Size = new Size(233, 20);
+            lblErro1.TabIndex = 11;
+            lblErro1.Text = "Usuario não encontrado ou Senha";
+            lblErro1.Visible = false;
+            // 
+            // lblErro2
+            // 
+            lblErro2.AutoSize = true;
+            lblErro2.BackColor = Color.Red;
+            lblErro2.Font = new Font("Segoe UI", 11.25F, FontStyle.Regular, GraphicsUnit.Point, 0);
+            lblErro2.ForeColor = SystemColors.ControlLightLight;
+            lblErro2.Location = new Point(100, 49);
+            lblErro2.Name = "lblErro2";
+            lblErro2.Size = new Size(68, 20);
+            lblErro2.TabIndex = 12;
+            lblErro2.Text = "incorreta";
+            lblErro2.UseWaitCursor = true;
+            lblErro2.Visible = false;
+            // 
             // Login
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
             ClientSize = new Size(256, 344);
+            Controls.Add(lblErro2);
+            Controls.Add(lblErro1);
             Controls.Add(lbRegistrar);
             Controls.Add(button1);
             Controls.Add(txbSenha);
@@ -125,5 +156,7 @@
         private TextBox txbLogin;
         private Label label1;
         private LinkLabel lbRegistrar;
+        private Label lblErro1;
+        private Label lblErro2;
     }
 }
