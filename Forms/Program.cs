@@ -35,6 +35,7 @@ namespace Forms
             services.AddScoped<Registrar>(); // Outro formulário
 
             services.AddScoped<IUsuarioDB, UsuarioDB>(); // Repositório
+            services.AddScoped<IContatoDB, ContatoDB>(); // Repositório
 
             var provider = services.BuildServiceProvider();
             services.AddSingleton(provider);
