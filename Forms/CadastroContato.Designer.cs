@@ -34,6 +34,9 @@
             txbSobrenome = new TextBox();
             btSalvar = new Button();
             btCancelar = new Button();
+            lblNome = new Label();
+            lblSobrenome = new Label();
+            txbId = new TextBox();
             SuspendLayout();
             // 
             // label1
@@ -70,27 +73,61 @@
             // 
             // btSalvar
             // 
-            btSalvar.Location = new Point(338, 84);
+            btSalvar.Location = new Point(338, 90);
             btSalvar.Name = "btSalvar";
             btSalvar.Size = new Size(75, 23);
             btSalvar.TabIndex = 4;
             btSalvar.Text = "Salvar";
             btSalvar.UseVisualStyleBackColor = true;
+            btSalvar.Click += btSalvar_Click;
             // 
             // btCancelar
             // 
-            btCancelar.Location = new Point(257, 84);
+            btCancelar.Location = new Point(257, 90);
             btCancelar.Name = "btCancelar";
             btCancelar.Size = new Size(75, 23);
             btCancelar.TabIndex = 5;
             btCancelar.Text = "Cancelar";
             btCancelar.UseVisualStyleBackColor = true;
             // 
+            // lblNome
+            // 
+            lblNome.AutoSize = true;
+            lblNome.ForeColor = Color.Red;
+            lblNome.Location = new Point(12, 71);
+            lblNome.Name = "lblNome";
+            lblNome.Size = new Size(118, 15);
+            lblNome.TabIndex = 6;
+            lblNome.Text = "* Campo Obrigatorio";
+            lblNome.Visible = false;
+            // 
+            // lblSobrenome
+            // 
+            lblSobrenome.AutoSize = true;
+            lblSobrenome.ForeColor = Color.Red;
+            lblSobrenome.Location = new Point(224, 71);
+            lblSobrenome.Name = "lblSobrenome";
+            lblSobrenome.Size = new Size(118, 15);
+            lblSobrenome.TabIndex = 7;
+            lblSobrenome.Text = "* Campo Obrigatorio";
+            lblSobrenome.Visible = false;
+            // 
+            // txbId
+            // 
+            txbId.Location = new Point(12, 1);
+            txbId.Name = "txbId";
+            txbId.Size = new Size(100, 23);
+            txbId.TabIndex = 8;
+            txbId.Visible = false;
+            // 
             // CadastroContato
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
             ClientSize = new Size(438, 119);
+            Controls.Add(txbId);
+            Controls.Add(lblSobrenome);
+            Controls.Add(lblNome);
             Controls.Add(btCancelar);
             Controls.Add(btSalvar);
             Controls.Add(txbSobrenome);
@@ -99,6 +136,7 @@
             Controls.Add(label1);
             Name = "CadastroContato";
             Text = "CadastroContato";
+            Load += CadastroContato_Load;
             ResumeLayout(false);
             PerformLayout();
         }
@@ -111,5 +149,8 @@
         private TextBox txbSobrenome;
         private Button btSalvar;
         private Button btCancelar;
+        private Label lblNome;
+        private Label lblSobrenome;
+        private TextBox txbId;
     }
 }

@@ -12,6 +12,32 @@ namespace Repository
 {
     public class ContatoDB : IContatoDB
     {
+        public bool AtualizaContato(Contato contato)
+        {
+            try
+            {
+                using (var connection = Conexao.GetConnection)
+                {
+                    connection.Open();
+                    string sql = "UPDATE contato SET nome = @nome, sobrenome = @sobrenome WHERE idCOntato = @idContato;";
+
+                    using (var command = new MySqlCommand(sql, connection))
+                    {
+                        command.Parameters.AddWithValue("@nome", contato.Nome);
+                        command.Parameters.AddWithValue("@sobrenome", contato.Sobrenome);
+                        command.Parameters.AddWithValue("@idContato", contato.IdContato);
+                        command.ExecuteNonQuery();
+
+                        return true;
+                    }
+                }
+            }
+            catch
+            {
+                return false;
+            }
+        }
+
         public List<Contato> GetContato(int id)
         {
             List<Contato> listaContato = new List<Contato>();
@@ -20,7 +46,7 @@ namespace Repository
                 using (var connection = Conexao.GetConnection)
                 {
                     connection.Open();
-                    string sql = "SELECT idContato, nome, idUsuario FROM contato WHERE idUsuario = @idUsuario;";
+                    string sql = "SELECT idContato, nome, sobrenome, idUsuario FROM contato WHERE idUsuario = @idUsuario;";
 
                     using (var command = new MySqlCommand(sql, connection))
                     {
@@ -28,16 +54,15 @@ namespace Repository
 
                         using (var reader = command.ExecuteReader())
                         {
-                            if (reader.Read())
+                            while (reader.Read())
                             {
-                                Contato contato = new Contato
+                                listaContato.Add(new Contato
                                 {
                                     IdContato = reader.GetInt32("idContato"),
                                     Nome = reader.GetString("nome"),
                                     Sobrenome = reader.GetString("sobrenome"),
                                     idUsuario = reader.GetInt32("idUsuario")
-                                };
-                                listaContato.Add(contato);
+                                });
                             }                            
                             return listaContato;
                         }
@@ -50,14 +75,14 @@ namespace Repository
             }
         }
 
-        public bool NovoContato(Contato contato, int idUsuario)
+        public bool NovoContato(Contato contato)
         {
             try
             {
                 using (var connection = Conexao.GetConnection)
                 {
                     connection.Open();
-                    string sql = "INSERT INTO contato VALUES(0, @nome, @sobrenome, @idUsuairo);";
+                    string sql = "INSERT INTO contato VALUES(0, @nome, @sobrenome, @idUsuario);";
 
                     using (var command = new MySqlCommand(sql, connection))
                     {

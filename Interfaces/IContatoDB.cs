@@ -11,6 +11,8 @@ namespace Interfaces
     {
         List<Contato> GetContato(int id);
 
-        bool NovoContato(Contato contato, int idUsuario);
+        bool NovoContato(Contato contato);
+
+        bool AtualizaContato(Contato contato);
     }
 }
