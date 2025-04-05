@@ -11,16 +11,18 @@ namespace Forms
     {
         private readonly IServiceProvider _serviceProvider;
         private readonly IContatoDB _contatoDB;
+        IEnderecoContatoDB _enderecoContatoDB;
 
         private readonly UsuarioLogado _sessao = UsuarioLogado.ObterInstancia();
 
-        public Main(IServiceProvider serviceProvider, IContatoDB contatoDB)
+        public Main(IServiceProvider serviceProvider, IContatoDB contatoDB, IEnderecoContatoDB enderecoContatoDB)
         {
             InitializeComponent();
             _serviceProvider = serviceProvider;
             _contatoDB = contatoDB;
             var login = _serviceProvider.GetRequiredService<Login>();
             login.ShowDialog();
+            _enderecoContatoDB = enderecoContatoDB;
         }
 
         private void Main_Load(object sender, EventArgs e)
@@ -70,6 +72,19 @@ namespace Forms
             var cadastroContato = new CadastroContato(_contatoDB, contato);
             if (cadastroContato.ShowDialog() == DialogResult.OK) CarregaGrid();
 
+        }
+
+        private void gvContatos_CellDoubleClick(object sender, DataGridViewCellEventArgs e)
+        {
+            int id = 0;
+            if (e.RowIndex >= 0) id = (int)gvContatos.SelectedRows[0].Cells["Id"].Value;
+            else return;
+
+            var contato = _contatoDB.GetContato(_sessao.Id).FirstOrDefault(c => c.IdContato == id);
+
+            
+            var enderecoContato = new EnderecosContato(contato, _enderecoContatoDB);
+            enderecoContato.ShowDialog();
         }
     }
 }

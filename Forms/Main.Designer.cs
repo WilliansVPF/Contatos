@@ -49,6 +49,7 @@
             gvContatos.SelectionMode = DataGridViewSelectionMode.FullRowSelect;
             gvContatos.Size = new Size(344, 300);
             gvContatos.TabIndex = 0;
+            gvContatos.CellDoubleClick += gvContatos_CellDoubleClick;
             // 
             // Id
             // 
